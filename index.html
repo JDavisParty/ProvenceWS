@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Form - La Provence</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    form {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .category {
+      margin-top: 30px;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+    }
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+    }
+    .quantity-controls button {
+      padding: 5px 10px;
+      margin: 0 5px;
+    }
+    .submit-btn {
+      margin-top: 30px;
+      padding: 15px;
+      width: 100%;
+      background-color: #6a1b9a;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Place Your Order</h1>
+  <form id="order-form">
+    <label for="location">Choose your location:</label>
+    <select id="location" required>
+      <option value="">Select one</option>
+      <option>Vancouver</option>
+      <option>Lake Oswego</option>
+      <option>Progress Ridge</option>
+      <option>Cedar Hills</option>
+      <option>Raleigh Hills</option>
+      <option>Orenco Station</option>
+      <option>Alberta</option>
+      <option>Division</option>
+      <option>Sandy</option>
+      <option>The Dalles</option>
+    </select>
+
+    <label for="name">Your full name:</label>
+    <input type="text" id="name" required />
+
+    <label for="date">Order date:</label>
+    <input type="date" id="date" required />
+
+    <div class="category">
+      <h3>Desserts</h3>
+      <div class="item">
+        <span>Macaron Box</span>
+        <div class="quantity-controls">
+          <button type="button" onclick="changeQty('macaron', -1)">-</button>
+          <input type="number" id="macaron" value="0" min="0" readonly />
+          <button type="button" onclick="changeQty('macaron', 1)">+</button>
+        </div>
+      </div>
+      <!-- Add more dessert items here -->
+    </div>
+
+    <div class="category">
+      <h3>Frozen Pastries</h3>
+      <div class="item">
+        <span>Croissant (Frozen)</span>
+        <div class="quantity-controls">
+          <button type="button" onclick="changeQty('croissant', -1)">-</button>
+          <input type="number" id="croissant" value="0" min="0" readonly />
+          <button type="button" onclick="changeQty('croissant', 1)">+</button>
+        </div>
+      </div>
+      <!-- Add more frozen pastry items here -->
+    </div>
+
+    <button type="submit" class="submit-btn">Submit Order</button>
+  </form>
+
+  <script>
+    function changeQty(id, delta) {
+      const input = document.getElementById(id);
+      let newValue = parseInt(input.value) + delta;
+      if (newValue < 0) newValue = 0;
+      input.value = newValue;
+    }
+
+    document.getElementById('order-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Order submitted! (Excel + email logic to be implemented)');
+    });
+  </script>
+</body>
+</html>
